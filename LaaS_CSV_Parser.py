@@ -3,7 +3,7 @@ import json
 from pymongo import MongoClient
 from datetime import datetime
 client = MongoClient()
-db = client.users
+db = client.flex_data
 
 DATAFILE = 'WW5 LaaS weekly usage reports.csv'
 FIELDS = ['log_sid', 'User_Name', 'Address', 'Client_Host', 'Client_IP', 'Virtual_IP', 'resource_var']
@@ -101,6 +101,7 @@ for line in reader:
 							if field != 'log_sid':
 								temp[field] = val
 						elif val in userDict:
+							#Hardcoded location testing for the map on the LaaS page
 							t = datetime.strptime("4/10/2018 8:15", "%m/%d/%Y %H:%M")
 							u = t.strftime('%m/%d/%Y %H:%M')
 							userDict[v].append({'SID' : 00000, 'Date' : u, 'Bytes_In' : 123456, 'Bytes_Out' : 54321, 'Country' : "US", 'State' : "California"})
